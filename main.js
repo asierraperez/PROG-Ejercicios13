@@ -1,4 +1,14 @@
 function main() {
+
+    $("body").css({ "display": "flex", "flex-direction": "row", "flex-wrap": "wrap" })
+
+    $(".heroe").css("font-size", "16pt")
+    $(".heroe").css("color", "blue")
+    $(".heroe").css("text-align", "center")
+
+    $(".enemigo").css({ "font-size": "16pt", "color": "red", "border-style": "solid", "border-color": "black" })
+
+
     var personajes = personaje()
     var enemigos = enemigo(personajes)
     var heroes = heroe(personajes)
@@ -11,7 +21,17 @@ function main() {
     var ataque_original = nordico.get_ataque
     var heroe_muerto = false
 
+
+
     while (repetir & !heroe_muerto) {
+
+        $("#nivel_heroe").html(nordico.nivel)
+        $("#experiencia_heroe").html(nordico.experiencia)
+        $("#salud_heroe").html(nordico.vida + "/" + vida_original)
+
+
+
+
 
 
         var esqueleto = new enemigos(100, 30, "Esqueleto", 5)
@@ -23,7 +43,7 @@ function main() {
 
         if (nordico.get_nivel <= 5) {
 
-            heroe_muerto = combate(nordico, esqueleto)
+            heroe_muerto = combate(nordico, esqueleto, vida_original)
 
             salida(heroe_muerto, nordico, esqueleto, vida_original, ataque_original)
             if (!heroe_muerto) {

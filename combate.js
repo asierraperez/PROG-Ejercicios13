@@ -1,15 +1,23 @@
-function combate(bueno, contrincante, vida_original, ataque_original) {
+function combate(bueno, contrincante, vida_original) {
     var ultimo_turno = 0
     var contrincante_muerto = false
     var bueno_muerto = false
+    var aux_vida_enemigo = contrincante.get_vida
     alert("Te encontraste con un " + contrincante.get_nombre + "\nEmpieza el combate\n" +
         contrincante.get_nombre + "  " + contrincante.get_vida + " HP\n" +
         bueno.get_nombre + "  " + bueno.get_vida + " HP\n")
+
+
+
     while (!contrincante_muerto && !bueno_muerto) {
+
+        $("#nivel_enemigo").html(contrincante.nivel)
+        $("#salud_enemigo").html(contrincante.vida + "/" + aux_vida_enemigo)
 
         if (ultimo_turno == 0 | ultimo_turno == 1) {
 
             contrincante.damage_recibido(bueno.ataque)
+            $("#salud_enemigo").html(contrincante.vida + "/" + aux_vida_enemigo)
             contrincante_muerto = contrincante.comprueba_muerto()
             alert(contrincante.get_nombre + "  " + contrincante.get_vida + " HP\n" +
                 bueno.get_nombre + "  " + bueno.get_vida + " HP\n")
@@ -20,6 +28,7 @@ function combate(bueno, contrincante, vida_original, ataque_original) {
 
         } else if (ultimo_turno == -1) {
             bueno.damage_recibido(contrincante.get_ataque)
+            $("#salud_heroe").html(bueno.vida + "/" + vida_original)
             bueno_muerto = bueno.comprueba_muerto()
             alert(contrincante.get_nombre + "  " + contrincante.get_vida + " HP\n" +
                 bueno.get_nombre + "  " + bueno.get_vida + " HP\n")
